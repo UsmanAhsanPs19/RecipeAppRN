@@ -1,11 +1,10 @@
-import { View, Text, ScrollView, TouchableOpacity, TextInput, Image } from 'react-native'
+import { View, TouchableOpacity, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { useColorScheme } from "nativewind"
 import { UserCircleIcon, BellIcon, SunIcon, MoonIcon, MagnifyingGlassIcon } from "react-native-heroicons/outline"
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen"
 import CustomText from '../components/CustomText'
-import { Categories_Data } from '../constants'
 import Categories from '../components/categories'
 import Recipe from '../components/recipe'
 
@@ -44,14 +43,14 @@ export default function HomeScreen() {
                     <View style={{ padding: wp(1) }}>
                         <BellIcon size={hp(3.5)} color={colorScheme === "dark" ? "white" : "black"} />
                     </View>
-                    <View className={`${colorScheme === "dark" ? "transparent" : "bg-amber-200"} rounded-lg`} style={{ padding: wp(1) }}>
+                    <View className={`${colorScheme === "dark" ? "transparent" : "bg-amber-300"} rounded-lg`} style={{ padding: wp(1) }}>
                         <UserCircleIcon size={hp(3.5)}
                             color={colorScheme === "dark" ? "white" : "black"} />
                     </View>
 
                 </View>
             </View>
-            <ScrollView
+            <View
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: hp(1) }}
                 className="space-y-6"
@@ -73,7 +72,7 @@ export default function HomeScreen() {
                 {/* Recipe section */}
 
                 <Recipe category={activeCategory} />
-            </ScrollView>
+            </View>
         </View>
     )
 }

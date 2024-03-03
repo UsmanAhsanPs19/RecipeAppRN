@@ -4,6 +4,7 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { useColorScheme } from "nativewind"
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import axios from "axios"
+import CachedImageCmp from '../helpers/CachedImageCmp';
 
 export default function Categories({ activeCategory, setActiveCategory }) {
     const [categories, setCategories] = useState([])
@@ -43,7 +44,7 @@ export default function Categories({ activeCategory, setActiveCategory }) {
                     {
                         categories.map((cat, index) => {
                             let isActive = cat.strCategory === activeCategory;
-                            let activeButtonClass = isActive ? colorScheme === "dark" ? "p-[7px] bg-white" : "p-[7px] bg-amber-100" : "p-[6px] transparent";
+                            let activeButtonClass = isActive ? colorScheme === "dark" ? "p-[7px] bg-white" : "p-[7px] bg-amber-300" : "p-[6px] transparent";
                             return (
                                 <TouchableOpacity
                                     key={index}
@@ -52,9 +53,9 @@ export default function Categories({ activeCategory, setActiveCategory }) {
                                     }}
                                     className="flex items-center space-y-1"
                                 >
-                                    <View className={"rounded-full border-solid border-red-500 " + activeButtonClass}>
-                                        <Image
-                                            source={{ uri: cat.strCategoryThumb }}
+                                    <View className={`rounded-full border-solid  ${colorScheme === "dark" ? "border-white" : "border-neutral-200"} border-2 ` + activeButtonClass}>
+                                        <CachedImageCmp
+                                            uri={cat.strCategoryThumb}
                                             style={{ width: hp(6), height: hp(6) }}
                                             className="rounded-full"
                                         />
